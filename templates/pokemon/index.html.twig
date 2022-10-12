@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PokemonController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Voici les pokemons de ta base de données :</h1><br/>
+    <ol>
+        {% for pokemon in pokemons %}
+        <li>{{pokemon.name}} of size {{pokemon.size}}
+        <a href="{{ path('show_pokemon', {'id': pokemon.id}) }}"> Voir</a>
+         <a href="{{ path('update_pokemon', {'id': pokemon.id}) }}"> Modifier</a>
+          <a href="{{ path('delete_pokemon', {'id': pokemon.id, 'token': csrf_token('delete' ~ pokemon.id)})}}"> Supprimer</a>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock %}
